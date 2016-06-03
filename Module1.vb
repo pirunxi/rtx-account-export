@@ -48,7 +48,7 @@
             Dim buddy = myBuddy.Group(depid)
             Dim count = buddy.Groups.count
             Dim indent = tabs + "    "
-            For i = 0 To count - 1
+            For i = 1 To count
                 Dim item = buddy.Groups.Item(i)
                 lines.Add(tabs + "+++" + item.Name)
                 Dim subDepid = item.id
@@ -59,7 +59,7 @@
 
         Private Sub GetDepUser(ByVal depid As Integer, ByVal tabs As String, ByRef lines As ArrayList)
             Dim buddy = myBuddy.Group(depid)
-            For i = 0 To buddy.Buddies.count - 1
+            For i = 1 To buddy.Buddies.count
                 Dim account = buddy.Buddies.Item(i).Account
                 GetAccountInfo(account, tabs, lines)
             Next
@@ -87,7 +87,7 @@
                     & indent & "Email:" & buddy.Email & vbCrLf _
                     & indent & "Dept:" & objHelper.GetBuddyDept(account) & vbCrLf
                 lines.Add(info)
-            ElseIf buddy.Telephone.Length >= 8 Or buddy.Mobile.Length >= 8 Then
+            ElseIf buddy.Telephone.Length >= 8 Or buddy.Mobile.Length >= 11 Then
                 info = indent & "==========================" & vbCrLf _
                     & indent & "Account:" & buddy.Account & vbCrLf _
                     & indent & "Name:" & buddy.name & vbCrLf _
